@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test for "two-way-binding"</title>
+	<meta charset="utf-8" />
+	
+	<script src="../js/modules/reactor.js"></script>
+	<script src="../js/modules/scope.js"></script>
+	
+	<script src="../js/modules/utils.js"></script>
+	<script>/*<![CDATA[*/
+var $scope = modules.Scope();
+
+$scope.$register('simple', 12);
+$scope.$register('complex', [{a:12}, {a:16}]);
+
+$scope.$watch('simple', function(newValue, oldValue){
+	console.log('$scope.simple changed:', newValue);
+});
+$scope.$watch('complex', function(newValue, oldValue){
+	console.log('$scope.complex changed:', newValue);
+});
+
+setTimeout(function(){
+	$scope.simple = 'apple';
+	
+	var tmp = modules.Utils.clone($scope.complex);
+	tmp[0].a = 15;
+	tmp[1].a = 100;
+	$scope.complex = tmp;
+}, 1000);
+	/*]]>*/</script>
+</head>
+<body>
+</body>
+</html>
