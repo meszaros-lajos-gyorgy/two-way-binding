@@ -54,7 +54,7 @@ if(!window.modules){
 				callback(e.detail.newValue, e.detail.oldValue);
 			};
 			data[variable].events.addEventListener('change', data[variable].handlers[callback]);
-			callback(data[variable].value, function(){});
+			callback(data[variable].value, undefined);
 			
 			return this;
 		};

@@ -15,10 +15,10 @@ $scope.$register('simple', 12);
 $scope.$register('complex', [{a:12}, {a:16}]);
 
 $scope.$watch('simple', function(newValue, oldValue){
-	console.log('$scope.simple changed:', newValue);
+	console.log('$scope.simple changed:', oldValue, '->', newValue);
 });
 $scope.$watch('complex', function(newValue, oldValue){
-	console.log('$scope.complex changed:', newValue);
+	console.log('$scope.complex changed:', JSON.stringify(oldValue), '->', JSON.stringify(newValue));
 });
 
 setTimeout(function(){
